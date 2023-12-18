@@ -1,0 +1,76 @@
+databaseChangeLog:
+  - changeSet:
+      id: add-file-storage
+      author: author
+      changes:
+        - createTable:
+            tableName: file
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: status
+                  type: nvarchar
+                  constraints:
+                    nullable: false
+              - column:
+                  name: task_type
+                  type: nvarchar
+                  constraints:
+                    nullable: false
+              - column:
+                  name: data
+                  type: nvarchar
+                  constraints:
+                    nullable: true
+  - changeSet:
+      id: create-item-table
+      author: author
+      changes:
+        - createTable:
+            tableName: section
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: nvarchar
+                  constraints:
+                    nullable: false
+        - createTable:
+            tableName: geological_class
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: nvarchar
+                  constraints:
+                    nullable: false
+              - column:
+                  name: code
+                  type: nvarchar
+                  constraints:
+                    nullable: false
+              - column:
+                  name: section_id
+                  type: int
+                  constraints:
+                    foreignKeyName: fk_section_id
+                    references: section(id)
+                    nullable: false
