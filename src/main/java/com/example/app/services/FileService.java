@@ -74,6 +74,7 @@ public class FileService {
         return jobId;
     }
 
+    // Добавить транзакцию
     public void doExport(Long jobId) {
         var file = fileRepository.findById(jobId).orElseThrow();
         try {
@@ -86,9 +87,11 @@ public class FileService {
         } catch (Exception e) {
             file.setStatus(Status.ERROR);
             fileRepository.save(file);
+            // Добавить логгирование
         }
     }
 
+    // Добавить транзакцию
     public void doImport(Long jobId) {
         var file = fileRepository.findById(jobId).orElseThrow();
         try {
@@ -101,6 +104,7 @@ public class FileService {
         } catch (Exception e) {
             file.setStatus(Status.ERROR);
             fileRepository.save(file);
+            // Добавить логгирование
         }
     }
 
